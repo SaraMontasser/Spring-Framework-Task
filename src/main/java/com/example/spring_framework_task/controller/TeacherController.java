@@ -7,8 +7,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.DeleteMapping;
+
+
+import java.util.List;
 
 @RestController
+
 public class TeacherController {
 
     @Autowired
@@ -18,17 +25,20 @@ public class TeacherController {
     ResponseEntity<Teacher> findTeacherByMail(@RequestParam String mail) {
         return ResponseEntity.ok(teacherServiceInterface.findTeacherByMail(mail));
     }
-    @GetMapping("/save")
-    ResponseEntity<Teacher> SaveTeacher(@RequestParam Teacher teacher) {
+    @PostMapping("/save")
+    ResponseEntity<Teacher> SaveTeacher(@RequestBody Teacher teacher) {
+
         return ResponseEntity.ok(teacherServiceInterface.SaveTeacher(teacher));
     }
     @GetMapping("/findByLetter")
-    ResponseEntity<Teacher> findTeachersByletterAinFirstName(@RequestParam char letter) {
-        return ResponseEntity.ok(teacherServiceInterface.findTeachersByletterAinFirstName(letter));
+    ResponseEntity<List<Teacher>> findTeachersByletterAinFirstName() {
+        return ResponseEntity.ok(teacherServiceInterface.findTeachersByletterAinFirstName('a'));
     }
-    @GetMapping("/deleteById")
-    ResponseEntity<Teacher> deleteTeacherById(@RequestParam Long id) {
-        return ResponseEntity.ok(teacherServiceInterface.deleteTeacherById(id));
+
+    @DeleteMapping("/deleteById")
+    ResponseEntity<String> deleteTeacherById(@RequestParam Long id) {
+        teacherServiceInterface.deleteTeacherById(id);
+        return ResponseEntity.ok("done");
     }
 
 }

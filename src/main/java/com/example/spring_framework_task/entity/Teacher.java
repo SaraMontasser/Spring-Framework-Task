@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotNull;
 @Table(name = "teacher")
 public class Teacher {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
 
@@ -15,15 +15,12 @@ public class Teacher {
     @NotNull
     private String email;
 
-    @Column(name = "password")
-    @NotNull
-    private String password;
 
-    @Column(name = "fname")
+    @Column(name = "firstName")
     @NotNull
     private String firstName;
 
-    @Column(name = "lname")
+    @Column(name = "lastName")
     @NotNull
     private String lastName;
 
@@ -44,13 +41,6 @@ public class Teacher {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public String getFirstName() {
         return firstName;

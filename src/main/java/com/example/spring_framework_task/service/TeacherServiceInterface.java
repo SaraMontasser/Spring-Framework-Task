@@ -2,12 +2,14 @@ package com.example.spring_framework_task.service;
 
 import com.example.spring_framework_task.entity.Teacher;
 
-public interface TeacherService {
+import java.util.List;
 
-    Teacher[] findTeachersByletterAinFirstName(char letter);
+public interface TeacherServiceInterface {
+
+    List<Teacher> findTeachersByletterAinFirstName(char letter);
     Teacher findTeacherByMail(String mail);
 
     void deleteTeacherById(Long Id);
 
-    void SaveTeacher(Teacher teacher);
+    Teacher SaveTeacher(Teacher teacher);
 }
